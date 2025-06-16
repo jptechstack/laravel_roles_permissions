@@ -13,7 +13,7 @@ class PermissionController extends Controller
 
     //this method will show create permissions page
     public function create() {
-
+        return view('permissions.create');
     }
 
     //this method will insert a permissions in DB
