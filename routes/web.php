@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/permissions', [PermissionController::class, 'create'])->name('permissions.create');
+    Route::get('/permissions/create', [PermissionController::class, 'create'])->name('permissions.create');
 });
 
 require __DIR__.'/auth.php';
