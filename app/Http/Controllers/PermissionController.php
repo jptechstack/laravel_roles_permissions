@@ -10,7 +10,7 @@ class PermissionController extends Controller
 {
     //this method will show permissions page
     public function index() {
-        return view('permissions.index');
+        return view('permissions.list');
     }
 
     //this method will show create permissions page
