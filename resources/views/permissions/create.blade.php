@@ -9,11 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="">
+                    <form action="{{route('permissions.store')}}" method="POST">
+                        @csrf
                         <div>
                             <label for="" class="text-lg font-medium">Name</label>
                             <div class="my-3">
-                                <input placeholder="Enter Name" type="text" name="" id="" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                <input value="{{old('name')}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                @error('name')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
                             </div>
                             <button class="bg-slate-700 text-sm rounded-md px-5 py-3 text-white">Save</button>
                         </div>
