@@ -22,7 +22,7 @@
                                     <p class="text-red-400 font-medium">{{$message}}</p>
                                 @enderror
                             </div>
-                            <button class="bg-slate-700 text-sm rounded-md px-5 py-3 text-white">Save</button>
+                            <button class="bg-slate-700 hover:bg-slate-600 text-sm rounded-md px-5 py-3 text-white">Save</button>
                         </div>
                     </form>
                 </div>

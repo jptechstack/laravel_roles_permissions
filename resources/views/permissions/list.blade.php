@@ -17,7 +17,7 @@
                <table class="w-full">
                     <thead class="bg-gray-50">
                         <tr class="border-b">
-                            <th class="px-6 py-3 text-left" width="60">Código</th>
+                            <th class="px-6 py-3 text-left" width="60">#</th>
                             <th class="px-6 py-3 text-left">Name</th>
                             <th class="px-6 py-3 text-left" width="180">Created</th>
                             <th class="px-6 py-3 text-center" width="180">Action</th>
