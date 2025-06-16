@@ -28,6 +28,8 @@ class PermissionController extends Controller
 
             Permission::create(['name' => $request->name]);
 
+            return redirect()->route('permissions.index')->with('success', 'Permission added successfully.');
+
         } else {
             return redirect()->route('permissions.create')->withInput()->withErrors($validator);
         }
