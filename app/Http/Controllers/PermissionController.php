@@ -50,8 +50,24 @@ class PermissionController extends Controller
     }
 
     //this method will update a permissions
-    public function update() {
+    public function update($id, Request $request) {
 
+        $permission = Permission::findOrFail($id);
+
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:3|unique:permissions,name,'.$id.',id'
+        ]);
+
+        if($validator->passes()) {
+
+            $permission->name = $request->name;
+            $permission->save();
+
+            return redirect()->route('permissions.index')->with('success', 'Permission updated successfully.');
+
+        } else {
+            return redirect()->route('permissions.edit', $id)->withInput()->withErrors($validator);
+        }
     }
 
     //this method will delete a permissions in DB
