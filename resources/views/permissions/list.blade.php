@@ -1,13 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Permissions') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Permissions') }}
+            </h2>
+            <a href="{{route('permissions.create')}}" class="bg-slate-700 text-sm rounded-md px-3 py-3 text-white">Create</a>
+        </div>
     </x-slot>
+
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+                <x-message></x-message>
                 <div class="p-6 text-gray-900">
 
                 </div>
