@@ -40,8 +40,8 @@ class PermissionController extends Controller
     }
 
     //this method will show edit permissions page
-    public function edit() {
-
+    public function edit($id) {
+        $permissions = Permission::findOrFail($id);
     }
 
     //this method will update a permissions
