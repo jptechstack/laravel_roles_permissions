@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
@@ -24,6 +25,8 @@ class PermissionController extends Controller
         ]);
 
         if($validator->passes()) {
+
+            Permission::create(['name' => $request->name]);
 
         } else {
             return redirect()->route('permissions.create')->withInput()->withErrors($validator);
