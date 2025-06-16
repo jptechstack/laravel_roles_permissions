@@ -40,7 +40,9 @@
                     </tbody>
                </table>
             </div>
-
+            <div class="my-3">
+                {{ $permissions->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>
