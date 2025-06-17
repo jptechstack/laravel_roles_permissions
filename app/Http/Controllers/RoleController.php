@@ -56,10 +56,10 @@ class RoleController extends Controller
     public function edit($id) {
 
         $role = Role::findOrFail($id);
-        $permissions = $role->permissions->pluck('name');
+        $hasPermissions = $role->permissions->pluck('name');
 
-        
 
+        return view('roles.edit');
 
     }
 
