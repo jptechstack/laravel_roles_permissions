@@ -57,9 +57,13 @@ class RoleController extends Controller
 
         $role = Role::findOrFail($id);
         $hasPermissions = $role->permissions->pluck('name');
+        $permissions = Permission::orderBy('name','ASC')->get();
 
 
-        return view('roles.edit');
+        return view('roles.edit', [
+            'permissions' => $permissions,
+            'hasPermissions' => $hasPermissions
+        ]);
 
     }
 
