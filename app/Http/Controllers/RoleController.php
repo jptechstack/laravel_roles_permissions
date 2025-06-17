@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -13,7 +14,12 @@ class RoleController extends Controller
 
     //this method will create roles page
     public function create() {
-        return view('roles.create');
+
+        $permissions = Permission::orderBy('name','ASC')->get();
+
+        return view('roles.create',[
+            'permissions' => $permissions
+        ]);
     }
 
 
