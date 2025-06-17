@@ -13,7 +13,7 @@ class RoleController extends Controller
 
     //this method will create roles page
     public function create() {
-
+ 
     }
 
 
