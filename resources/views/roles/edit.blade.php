@@ -17,7 +17,7 @@
                         <div>
                             <label for="" class="text-lg font-medium">Name</label>
                             <div class="my-3">
-                                <input value="{{old('name', )}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                <input value="{{old('name', $role->name)}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
                                 @error('name')
                                     <p class="text-red-400 font-medium">{{$message}}</p>
                                 @enderror
@@ -27,7 +27,7 @@
                                 @if ($permissions->isNotEmpty())
                                     @foreach ($permissions as $permission)
                                     <div class="mt-3">
-                                        <input class="rounded" type="checkbox" name="permission[]" id="permission-{{$permission->id}}" value="{{$permission->name}}">
+                                        <input {{ ($hasPermissions->contains($permission->name)) ? 'checked' : '' }} class="rounded" type="checkbox" name="permission[]" id="permission-{{$permission->id}}" value="{{$permission->name}}">
                                         <label for="permission-{{$permission->id}}">{{$permission->name}}</label>
                                     </div>
                                     @endforeach
