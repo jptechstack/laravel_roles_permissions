@@ -62,7 +62,8 @@ class RoleController extends Controller
 
         return view('roles.edit', [
             'permissions' => $permissions,
-            'hasPermissions' => $hasPermissions
+            'hasPermissions' => $hasPermissions,
+            'role' => $role
         ]);
 
     }
