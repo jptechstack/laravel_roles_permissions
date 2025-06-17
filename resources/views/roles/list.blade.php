@@ -14,7 +14,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
                <x-message></x-message>
-               
+
             </div>
             <div class="my-3">
                 {{-- {{ $permissions->links() }} --}}
