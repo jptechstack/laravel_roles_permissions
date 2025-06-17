@@ -11,7 +11,7 @@ class RoleController extends Controller
 {
     //this method will show roles page
     public function index() {
-
+        
     }
 
     //this method will create roles page
