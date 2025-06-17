@@ -23,7 +23,7 @@ class PermissionController extends Controller
     }
 
     //this method will insert a permissions in DB
-    public function store( Request $request) {
+    public function store( Request $request ) {
         $validator = Validator::make($request->all(),[
             'name' => 'required|unique:permissions|min:3'
         ]);
@@ -71,7 +71,28 @@ class PermissionController extends Controller
     }
 
     //this method will delete a permissions in DB
-    public function destroy() {
+    public function destroy( Request $request ) {
+
+        $id = $request->id;
+
+        $permission = Permission::find($id);
+
+        if($permission == null) {
+
+            session()->flash('error','Permission not found');
+
+            return response()->json([
+                'status' => false
+            ]);
+        }
+
+        $permission->delete();
+
+        session()->flash('success','Permission deleted successfully.');
+
+        return response()->json([
+            'status' => true
+        ]);
 
     }
 }
