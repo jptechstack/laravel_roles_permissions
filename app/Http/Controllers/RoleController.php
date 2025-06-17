@@ -68,6 +68,32 @@ class RoleController extends Controller
 
     }
 
+    public function update($id, Request $request) {
 
+        $role = Role::findOrFail($id);
+
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|unique:roles,name,'.$id.'|min:3'
+        ]);
+
+        if($validator->passes()) {
+
+            $role->name = $request->name;
+            $role->save();
+
+            if(!empty($request->permission)) {
+                $role->syncPermissions($request->permission);
+            } else {
+                $role->syncPermissions([]);
+            }
+
+            return redirect()->route('roles.index')->with('success', 'Role updated successfully.');
+
+        } else {
+
+            return redirect()->route('roles.edit', $id)->withInput()->withErrors($validator);
+        }
+
+    }
 
 }
