@@ -1,13 +1,23 @@
-
 @if (Session::has('success'))
-<div class="bg-green-200 border-green-600 p-4 mb-3 rounded-sm shadow-sm">
-    {{Session::get('success')}}
-</div>
+    <div
+        x-data="{ show: true }"
+        x-init="setTimeout(() => show = false, 3000)"
+        x-show="show"
+        x-transition
+        class="fixed top-4 right-4 bg-green-500 text-white px-6 py-2 rounded shadow-lg z-50"
+    >
+        {{ Session::get('success') }}
+    </div>
 @endif
 
 @if (Session::has('error'))
-<div class="bg-red-200 border-red-600 p-4 mb-3 rounded-sm shadow-sm">
-    {{Session::get('error')}}
-</div>
+    <div
+        x-data="{ show: true }"
+        x-init="setTimeout(() => show = false, 3000)"
+        x-show="show"
+        x-transition
+        class="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50"
+    >
+        {{ Session::get('error') }}
+    </div>
 @endif
-
