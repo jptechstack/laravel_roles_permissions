@@ -97,7 +97,9 @@ class RoleController extends Controller
     }
 
 
-    public function destroy($id) {
+    public function destroy( Request $request) {
+
+        $id = $request->id;
 
         $role = Role::find($id);
 
