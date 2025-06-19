@@ -10,6 +10,12 @@ class ArticleController extends Controller
 {
     public function index() {
 
+       $articles = Article::lastet()->paginate(25);
+
+       return view('articles.list', [
+        'articles' =>  $articles
+       ]);
+
     }
 
     public function create() {
