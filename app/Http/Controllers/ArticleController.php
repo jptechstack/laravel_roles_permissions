@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function index() {
 
-       $articles = Article::lastet()->paginate(25);
+       $articles = Article::latest()->paginate(25);
 
        return view('articles.list', [
         'articles' =>  $articles
@@ -39,10 +39,10 @@ class ArticleController extends Controller
             $article->author = $request->author;
             $article->save();
 
-            return redirect()->routes('articles.index')->with('success', 'Articles added successfully.');
+            return redirect()->route('articles.index')->with('success', 'Articles added successfully.');
 
         } else {
-            return redirect()->routes('articles.create')->withInput()->withErrors($validador);
+            return redirect()->route('articles.create')->withInput()->withErrors($validador);
         }
 
     }
