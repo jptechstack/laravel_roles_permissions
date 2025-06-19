@@ -22,6 +22,7 @@ class ArticleController extends Controller
 
         $validador = Validator::make($request->all(), [
             'title' => 'required|min:5',
+            'author' => 'required|min:5'
         ]);
 
         if($validador->passes()) {
