@@ -33,8 +33,8 @@
                                 <td class="px-6 py-3 text-left">{{$article->author}}</td>
                                 <td class="px-6 py-3 text-left">{{\Carbon\Carbon::parse($article->created_at)->format('d/m/Y')}}</td>
                                 <td class="px-6 py-3 text-center">
-                                    {{-- <a href="{{route("article.edit", $article->id)}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white hover:bg-slate-600">Edit</a>
-                                    <a href="javascript:void();" onclick="deleteArticle( {{$article->id}})" class="bg-red-600 text-sm rounded-md px-3 py-2 text-white hover:bg-red-500">Delete</a> --}}
+                                    <a href="{{route("articles.edit", $article->id)}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white hover:bg-slate-600">Edit</a>
+                                    {{-- <a href="javascript:void();" onclick="deleteArticle( {{$article->id}})" class="bg-red-600 text-sm rounded-md px-3 py-2 text-white hover:bg-red-500">Delete</a> --}}
                                 </td>
                             </tr>
                         @endforeach

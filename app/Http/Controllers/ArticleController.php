@@ -49,15 +49,34 @@ class ArticleController extends Controller
 
     public function edit($id) {
 
-        $articles = Article::findOrFail($id);
+        $article = Article::findOrFail($id);
 
         return view('articles.edit', [
-            'articles' => $articles
+            'articles' => $article
         ]);
     }
 
     public function update( Request $request, $id) {
 
+        $article = Article::findOrFail($id);
+
+        $validador = Validator::make($request->all(), [
+            'title' => 'required|min:5',
+            'author' => 'required|min:5'
+        ]);
+
+        if($validador->passes()) {
+
+            $article->title = $request->title;
+            $article->text = $request->text;
+            $article->author = $request->author;
+            $article->save();
+
+            return redirect()->route('articles.index')->with('success', 'Articles added successfully.');
+
+        } else {
+            return redirect()->route('articles.create')->withInput()->withErrors($validador);
+        }
     }
 
     public function destroy($id) {
