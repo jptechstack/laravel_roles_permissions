@@ -47,12 +47,13 @@ class ArticleController extends Controller
 
     }
 
-    public function show($id) {
-
-    }
-
     public function edit($id) {
 
+        $articles = Article::findOrFail($id);
+
+        return view('articles.edit', [
+            'articles' => $articles
+        ]);
     }
 
     public function update( Request $request, $id) {
