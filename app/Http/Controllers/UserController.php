@@ -38,10 +38,12 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
+        $hasRoles = $user->roles->pluck('name');
         $roles = Role::orderBy('name', 'ASC')->get();
 
         return view('users.edit',[
             'user' => $user,
+            'hasRoles' => $hasRoles,
             'roles' => $roles
         ]);
     }
