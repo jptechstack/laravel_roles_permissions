@@ -2,9 +2,9 @@
     <x-slot name="header">
         <div class="flex justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Roles / Edit
+                Users / Edit
             </h2>
-            <a href="{{route('roles.index')}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white">Back</a>
+            <a href="{{route('permissions.index')}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white">Back</a>
         </div>
     </x-slot>
 
@@ -12,13 +12,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{route('roles.update', $role->id)}}" method="POST">
+                    <form action="{{route('roles.update', $user->id)}}" method="POST">
                         @csrf
                         <div>
                             <label for="" class="text-lg font-medium">Name</label>
                             <div class="my-3">
-                                <input value="{{old('name', $role->name)}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                <input value="{{old('name', $user->name)}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
                                 @error('name')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                            <label for="" class="text-lg font-medium">Email</label>
+                            <div class="my-3">
+                                <input value="{{old('email', $user->email)}}" placeholder="Enter Email" type="email" name="email" id="email" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                @error('email')
                                     <p class="text-red-400 font-medium">{{$message}}</p>
                                 @enderror
                             </div>
