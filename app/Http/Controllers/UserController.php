@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:view users')->only('index');
+        $this->middleware('permission:edit users')->only('edit');
+        $this->middleware('permission:create users')->only('create');
+        $this->middleware('permission:delete users')->only('destroy');
+    }
 
     public function index()
     {
