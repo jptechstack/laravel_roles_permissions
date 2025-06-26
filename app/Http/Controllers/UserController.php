@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -47,7 +48,28 @@ class UserController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+
+        $user = User::findOrFail($id);
+
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users,email,'.$id.',id',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect()->route('users.edit',$id)->withInput()->withErrors($validator);
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        $user->syncRoles($request->role);
+
+        return redirect()->route('users.index',$id)->with('success', 'User updated successfully.');
+
+
     }
 
     public function destroy(string $id)
