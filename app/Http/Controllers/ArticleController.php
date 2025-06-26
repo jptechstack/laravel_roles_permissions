@@ -79,7 +79,24 @@ class ArticleController extends Controller
         }
     }
 
-    public function destroy($id) {
+    public function destroy(Request $request) {
+
+        $article = Article::find($request->id);
+
+        if ($article == null) {
+
+            session()->flash('error','Articles not found');
+            return response()->json([
+                'status' => false
+            ]);
+        }
+
+        $article->delete();
+
+        session()->flash('success','Articles deleted successfully');
+        return response()->json([
+            'status' => true
+        ]);
 
     }
 }
