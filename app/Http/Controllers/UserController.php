@@ -29,7 +29,11 @@ class UserController extends Controller
 
     public function create()
     {
-        //
+        $roles = Role::orderBy('name', 'ASC')->get();
+
+        return view('users.create',[
+            'roles' => $roles
+        ]);
     }
 
     public function store(Request $request)
