@@ -83,12 +83,12 @@
         </div>
     </div>
 
-    {{-- <x-slot name="script">
+    <x-slot name="script">
         <script type="text/javascript">
             function deleteUser(id) {
                 if(confirm("Are you sure want to delete?")) {
                     $.ajax({
-                        url: '{{ route("roles.destroy")}}',
+                        url: '{{ route("users.destroy")}}',
                         type: 'delete',
                         data: {id:id},
                         datatype: 'json',
@@ -96,11 +96,11 @@
                             'x-csrf-token' : '{{ csrf_token() }}'
                         },
                         success: function(response) {
-                            window.location.href = '{{route("roles.index")}}';
+                            window.location.href = '{{route("users.index")}}';
                         }
                     });
                 }
             }
         </script>
-    </x-slot> --}}
+    </x-slot>
 </x-app-layout>
