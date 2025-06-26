@@ -20,6 +20,7 @@
                             <th class="px-6 py-3 text-left" width="60">#</th>
                             <th class="px-6 py-3 text-left">Name</th>
                             <th class="px-6 py-3 text-left">Email</th>
+                            <th class="px-6 py-3 text-left">Roles</th>
                             <th class="px-6 py-3 text-left" width="180">Created</th>
                             <th class="px-6 py-3 text-center" width="180">Action</th>
                         </tr>
@@ -31,6 +32,7 @@
                                 <td class="px-6 py-3 text-left">{{$user->id}}</td>
                                 <td class="px-6 py-3 text-left">{{$user->name}}</td>
                                 <td class="px-6 py-3 text-left">{{$user->email}}</td>
+                                <td class="px-6 py-3 text-left">{{$user->roles->pluck('name')->implode(', ')}}</td>
                                 <td class="px-6 py-3 text-left">{{\Carbon\Carbon::parse($user->created_at)->format('d M, Y')}}</td>
                                 <td class="px-6 py-3 text-center">
                                     <a href="{{route("users.edit", $user->id)}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white hover:bg-slate-600">Edit</a>
