@@ -4,7 +4,16 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Roles') }}
             </h2>
-            <a href="{{route('roles.create')}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white">Create</a>
+            @php
+                $canCreate = auth()->user()->can('create roles');
+            @endphp
+            <a href="{{ $canCreate ? route('roles.create') : '#' }}"
+            class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white transition
+                    {{ $canCreate ? 'cursor-pointer hover:bg-slate-800' : 'opacity-50 cursor-not-allowed pointer-events-auto' }}"
+            @if(!$canCreate) tabindex="-1" aria-disabled="true" @endif
+            >
+                Create
+            </a>
         </div>
     </x-slot>
 
@@ -33,8 +42,31 @@
                                 <td class="px-6 py-3 text-left">{{$role->permissions->pluck('name')->implode(',')}}</td>
                                 <td class="px-6 py-3 text-left">{{\Carbon\Carbon::parse($role->created_at)->format('d M, Y')}}</td>
                                 <td class="px-6 py-3 text-center">
-                                    <a href="{{route("roles.edit", $role->id)}}" class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white hover:bg-slate-600">Edit</a>
-                                    <a href="javascript:void();" onclick="deleteRole( {{$role->id}})" class="bg-red-600 text-sm rounded-md px-3 py-2 text-white hover:bg-red-500">Delete</a>
+                                    <div class="flex gap-x-2">
+                                    @php
+                                        $canEdit = auth()->user()->can('edit roles');
+                                    @endphp
+                                    <a href="{{ $canEdit ? route('roles.edit', $role->id) : '#' }}"
+                                    class="bg-slate-700 text-sm rounded-md px-3 py-2 text-white transition
+                                            {{ $canEdit ? 'cursor-pointer hover:bg-slate-600' : 'opacity-50 cursor-not-allowed pointer-events-auto' }}"
+                                    @if(!$canEdit) tabindex="-1" aria-disabled="true" @endif
+                                    >
+                                        Edit
+                                    </a>
+
+                                    @php
+                                        $canDelete = auth()->user()->can('delete roles');
+                                    @endphp
+
+                                    <a href="{{ $canDelete ? 'javascript:void(0);' : '#' }}"
+                                    onclick="{{ $canDelete ? "deleteRole($role->id)" : '' }}"
+                                    class="bg-red-600 text-sm rounded-md px-3 py-2 text-white transition
+                                            {{ $canDelete ? 'cursor-pointer hover:bg-red-500' : 'opacity-50 cursor-not-allowed pointer-events-auto' }}"
+                                    @if(!$canDelete) tabindex="-1" aria-disabled="true" @endif
+                                    >
+                                        Delete
+                                    </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
