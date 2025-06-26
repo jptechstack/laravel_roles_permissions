@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -38,7 +39,28 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        //
+
+        $validator = Validator::make($request->all(),[
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:5|same:confirm_password',
+            'confirm_password' => 'required',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect()->route('users.create')->withInput()->withErrors($validator);
+        }
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $user->syncRoles($request->role);
+
+        return redirect()->route('users.index')->with('success', 'User added successfully.');
     }
 
     public function show(string $id)

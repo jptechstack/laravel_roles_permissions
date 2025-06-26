@@ -40,19 +40,17 @@ class ArticleController extends Controller
             'author' => 'required|min:5'
         ]);
 
-        if($validador->passes()) {
-
-            $article = new Article();
-            $article->title = $request->title;
-            $article->text = $request->text;
-            $article->author = $request->author;
-            $article->save();
-
-            return redirect()->route('articles.index')->with('success', 'Articles added successfully.');
-
-        } else {
-            return redirect()->route('articles.create')->withInput()->withErrors($validador);
+        if ($validador->fails()) {
+            return redirect()->route('articles.index')->withInput()->withErrors($validador);
         }
+
+        $article = new Article();
+        $article->title = $request->title;
+        $article->text = $request->text;
+        $article->author = $request->author;
+        $article->save();
+
+        return redirect()->route('articles.index')->with('success', 'Articles added successfully.');
 
     }
 
@@ -74,18 +72,18 @@ class ArticleController extends Controller
             'author' => 'required|min:5'
         ]);
 
-        if($validador->passes()) {
-
-            $article->title = $request->title;
-            $article->text = $request->text;
-            $article->author = $request->author;
-            $article->save();
-
-            return redirect()->route('articles.index')->with('success', 'Articles added successfully.');
-
-        } else {
+        if($validador->fails()) {
             return redirect()->route('articles.create')->withInput()->withErrors($validador);
+
+
         }
+        
+        $article->title = $request->title;
+        $article->text = $request->text;
+        $article->author = $request->author;
+        $article->save();
+
+        return redirect()->route('articles.index')->with('success', 'Articles added successfully.');
     }
 
     public function destroy(Request $request) {
