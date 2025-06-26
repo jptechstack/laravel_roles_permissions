@@ -35,8 +35,7 @@
                                 @if ($roles->isNotEmpty())
                                     @foreach ($roles as $role)
                                     <div class="mt-3">
-                                        {{-- {{ ($hasPermissions->contains($permission->name)) ? 'checked' : '' }}  --}}
-                                        <input class="rounded" type="checkbox" name="role[]" id="role-{{$role->id}}" value="{{$role->name}}">
+                                        <input {{ ($hasRoles->contains($role->name)) ? 'checked' : '' }} class="rounded" type="checkbox" name="role[]" id="role-{{$role->id}}" value="{{$role->name}}">
                                         <label for="role-{{$role->id}}">{{$role->name}}</label>
                                     </div>
                                     @endforeach
