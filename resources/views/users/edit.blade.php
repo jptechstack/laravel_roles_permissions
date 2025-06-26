@@ -32,11 +32,12 @@
                             </div>
 
                             <div class="grid grid-cols-4 mb-3">
-                                @if ($permissions->isNotEmpty())
-                                    @foreach ($permissions as $permission)
+                                @if ($roles->isNotEmpty())
+                                    @foreach ($roles as $role)
                                     <div class="mt-3">
-                                        <input {{ ($hasPermissions->contains($permission->name)) ? 'checked' : '' }} class="rounded" type="checkbox" name="permission[]" id="permission-{{$permission->id}}" value="{{$permission->name}}">
-                                        <label for="permission-{{$permission->id}}">{{$permission->name}}</label>
+                                        {{-- {{ ($hasPermissions->contains($permission->name)) ? 'checked' : '' }}  --}}
+                                        <input class="rounded" type="checkbox" name="role[]" id="role-{{$role->id}}" value="{{$role->name}}">
+                                        <label for="role-{{$role->id}}">{{$role->name}}</label>
                                     </div>
                                     @endforeach
 

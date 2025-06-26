@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -36,9 +37,11 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
+        $roles = Role::orderBy('name', 'ASC')->get();
 
         return view('users.edit',[
-            'user' => $user
+            'user' => $user,
+            'roles' => $roles
         ]);
     }
 
