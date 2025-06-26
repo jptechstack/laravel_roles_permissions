@@ -12,12 +12,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{route('users.update', $user->id)}}" method="POST">
+                    <form action="{{route('users.store', $user->id)}}" method="POST">
                         @csrf
                         <div>
                             <label for="" class="text-lg font-medium">Name</label>
                             <div class="my-3">
-                                <input value="{{old('name', $user->name)}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                <input value="{{old('name')}}" placeholder="Enter Name" type="text" name="name" id="name" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
                                 @error('name')
                                     <p class="text-red-400 font-medium">{{$message}}</p>
                                 @enderror
@@ -25,8 +25,24 @@
 
                             <label for="" class="text-lg font-medium">Email</label>
                             <div class="my-3">
-                                <input value="{{old('email', $user->email)}}" placeholder="Enter Email" type="email" name="email" id="email" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                <input value="{{old('email')}}" placeholder="Enter Email" type="email" name="email" id="email" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
                                 @error('email')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                            <label for="" class="text-lg font-medium">Password</label>
+                            <div class="my-3">
+                                <input value="{{old('password')}}" placeholder="Enter Password" type="password" name="password" id="password" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                @error('password')
+                                    <p class="text-red-400 font-medium">{{$message}}</p>
+                                @enderror
+                            </div>
+
+                            <label for="" class="text-lg font-medium">Confirm Password</label>
+                            <div class="my-3">
+                                <input value="{{old('confirm_password')}}" placeholder="Confirm Your Password" type="password" name="confirm_password" id="password" class="border-gray-300 shadow-sm w-1/2 rounded-lg">
+                                @error('confirm_password')
                                     <p class="text-red-400 font-medium">{{$message}}</p>
                                 @enderror
                             </div>
